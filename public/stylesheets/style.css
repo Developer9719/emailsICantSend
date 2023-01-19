@@ -1,0 +1,23 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /* Site Background */
+  background-image: url('../images/background.jpeg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+a {
+  color: #00B7FF;
+}
+
+h1, h2 {
+  text-align: center;
+  margin-top: 5%;
+}
+
+.dontDisplayAsLink {
+  text-decoration-line: none;
+  color: inherit;
+}
