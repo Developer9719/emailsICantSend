@@ -4,6 +4,10 @@ only logged in users can use the site
 designed like an email client
 create a new "email" that works like a journal entry
 display all past "email" entries 
+Just make sure the site functionality works
+
+Design Update:
+make sure the design and layout of the site look good
 
 Feature Update: Sabrina Ads
 shows a scrolling top bar that displays all of Sabrina's albums and singles.
