@@ -5,6 +5,8 @@ const dotenv = require('dotenv');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+// For auth system
+const bcrypt = require("bcryptjs");
 
 // DB Connection Varibales
 dotenv.config({ path: './.env'});
@@ -45,6 +47,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// For auth system
+app.use(express.urlencoded({extended: 'false'}));
+app.use(express.json());
 
 // --- Connect URL Params to page controllers ---
 app.use('/inbox', inboxRouter);
@@ -54,6 +59,41 @@ app.use('/', indexRouter); // Login Page
 app.use('/signup', signUpRouter);
 app.use('/account', accountRouter);
 app.use('/logout', logoutRouter);
+
+// Sign Up DB Operations
+app.post("signup", (req, res) => {    
+  const { username, password, password_confirm } = req.body
+
+  db.query('SELECT username FROM users WHERE username = ?', [username], async (error, res) => {
+    if(error){
+      console.log(error)
+    }
+
+    // Make sure username doesn't already exist and that passwords match
+    if( result.length > 0 ) {
+      return res.render('signup', {
+          message: 'This username is already in use'
+      });
+    } else if(password !== password_confirm) {
+        return res.render('signup', {
+            message: 'Passwords do not match!'
+        });
+    }
+    
+    // Add user account to db
+    let hashedPassword = await bcrypt.hash(password, 8)
+
+        db.query('INSERT INTO users SET?', {Username: username, password: hashedPassword}, (err, res) => {
+            if(error) {
+                console.log(error)
+            } else {
+                return res.render('login', {
+                    message: 'User registered!'
+                });
+            }
+        });
+  });
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
