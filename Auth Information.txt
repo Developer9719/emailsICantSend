@@ -1,0 +1,8 @@
+MySQL Database Info
+
+Database Name: nodejsEmailsICantSend
+Hostname: mysql.emailsicantsend.dreamhosters.com
+Username: nodejsadmin
+Password: SabbyC99!
+
+*** Remember to hash passwords ***
