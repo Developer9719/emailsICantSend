@@ -1,11 +1,12 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0%;
+  padding: 0%;
   /* Site Background */
   background-image: url('../images/background.jpeg');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
 }
 
 a {
