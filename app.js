@@ -6,10 +6,18 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 // For auth system
-const bcrypt = require("bcryptjs");
+var mysql = require('mysql');
 
-// DB Connection Varibales
-dotenv.config({ path: './.env'});
+var con = mysql.createConnection({ // Change this when going live
+  host: "localhost",
+  user: "root",
+  password: ""
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
 
 // Open a connection to the db
 const db = mysql.createConnection({
